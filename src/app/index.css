@@ -1,4 +1,17 @@
 
-h1 {
-    color: blue;
+/* Adding tailwind */
+@import "tailwindcss";
+
+/* Setting up base styles */
+*,
+*::before,
+*::after {
+    /* Fonts */
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
