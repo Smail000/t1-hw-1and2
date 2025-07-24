@@ -1,5 +1,5 @@
 
-import { FontWeight, FontSize, fontColor } from "@/app/styles";
+import { FontWeight, FontSize, baseFontColor } from "@/app/styles";
 
 type TitleProps = {
     tag: "h1" | "h3",
@@ -11,7 +11,7 @@ type TitleProps = {
 export default function Title({ tag: Tag, weight, size, children }: TitleProps) {
 
     return (
-        <Tag className={`${weight} ${size} ${fontColor}`}>
+        <Tag className={`${weight} ${size} ${baseFontColor}`}>
             { children }
         </Tag>
     )

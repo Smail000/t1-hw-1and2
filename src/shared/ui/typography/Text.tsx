@@ -1,5 +1,5 @@
 
-import { FontWeight, FontSize, fontColor } from "@/app/styles";
+import { FontWeight, FontSize, baseFontColor } from "@/app/styles";
 
 type TextProps = {
     tag: "p" | "span",
@@ -11,7 +11,7 @@ type TextProps = {
 export default function Text({ tag: Tag, weight, size, children }: TextProps) {
 
     return (
-        <Tag className={`${weight} ${size} ${fontColor}`}>
+        <Tag className={`${weight} ${size} ${baseFontColor}`}>
             { children }
         </Tag>
     )
