@@ -1,24 +1,17 @@
 
-import { Weight, Color, Size } from "@/app/styles";
+import { FontWeight, FontSize, fontColor } from "@/app/styles";
 
 type TitleProps = {
     tag: "h1" | "h3",
-    weight: Weight,
-    color: Color,
-    size: Size,
+    weight: FontWeight,
+    size: FontSize,
     children: React.ReactElement | string
 }
 
-export default function Title({ tag: Tag, weight, color, size, children }: TitleProps) {
+export default function Title({ tag: Tag, weight, size, children }: TitleProps) {
 
     return (
-        <Tag
-            style={{
-                color: color,
-                fontSize: size,
-                fontWeight: weight
-            }}
-        >
+        <Tag className={`${weight} ${size} ${fontColor}`}>
             { children }
         </Tag>
     )

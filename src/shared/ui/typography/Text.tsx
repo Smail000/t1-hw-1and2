@@ -1,24 +1,17 @@
 
-import { Weight, Color, Size } from "@/app/styles";
+import { FontWeight, FontSize, fontColor } from "@/app/styles";
 
 type TextProps = {
     tag: "p" | "span",
-    weight: Weight,
-    color: Color,
-    size: Size,
+    weight: FontWeight
+    size: FontSize,
     children: React.ReactElement | string
 }
 
-export default function Text({ tag: Tag, weight, color, size, children }: TextProps) {
+export default function Text({ tag: Tag, weight, size, children }: TextProps) {
 
     return (
-        <Tag
-            style={{
-                color: color,
-                fontSize: size,
-                fontWeight: weight
-            }}
-        >
+        <Tag className={`${weight} ${size} ${fontColor}`}>
             { children }
         </Tag>
     )
