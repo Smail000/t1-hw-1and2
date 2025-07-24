@@ -1,5 +1,5 @@
 
-import { Weight, Color, Size } from "../../../app/styles";
+import { Weight, Color, Size } from "@/app/styles";
 
 type TitleProps = {
     tag: "h1" | "h3",

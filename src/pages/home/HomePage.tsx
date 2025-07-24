@@ -1,6 +1,6 @@
 
-import { Color, Size, Weight } from "../../app/styles"
-import { Title, Text } from "../../shared/ui/typography"
+import { Color, Size, Weight } from "@/app/styles"
+import { Title, Text } from "@/shared/ui/typography";
 
 export function HomePage() {
     return (

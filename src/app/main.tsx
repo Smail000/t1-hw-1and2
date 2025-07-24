@@ -2,7 +2,7 @@ import './index.css'
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HomePage } from '../pages/home/HomePage'
+import { HomePage } from '@/pages/home'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
