@@ -1,10 +1,14 @@
 
+import { useDropdownResetKey } from "@/shared/lib/hooks/useDropdownReset";
 import { IconButton } from "@/shared/ui/button";
-import { Icon } from "@/shared/ui/icon";
+import { Dropdown } from "@/shared/ui/dropdown";
 import { Layout } from "@/shared/ui/layout";
 import { Title, Text } from "@/shared/ui/typography";
 
 export function HomePage() {
+
+    const { resetKey, dropdownReset } = useDropdownResetKey();
+
     return (
         <>
             <Title
@@ -22,11 +26,8 @@ export function HomePage() {
                 <IconButton as="Check" bgcolor="base" />
                 <IconButton as="ChevronDown" bgcolor="dark" />
                 <IconButton as="ChevronUp" bgcolor="dark" />
-                <IconButton as="Search" bgcolor="dark" onClick={() => {console.log(1)}} />
-                <Layout direction="row" padding="base" color="dark" gap="base" doHover>
-                    <Text size="medium" tag="span" weight="medium" unselectible>Приоритет</Text>
-                    <Icon as="ChevronDown"/>
-                </Layout>
+                <IconButton as="X" bgcolor="dark" onClick={dropdownReset} />
+                <Dropdown title="Приоритет" items={[ "Low", "Medium", "High" ]} className="min-w-[200px]" resetKey={resetKey}/>
                 <Layout color="dark" padding="small">
                     <Text size="base" tag="span" weight="medium" unselectible>In Progress</Text>
                 </Layout>
