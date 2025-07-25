@@ -16,7 +16,7 @@ export function HomePage() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const tasks = useContext(TaskContext);
+    const [ tasks, ] = useContext(TaskContext);
 
     const { key: dropdownKey, trigger: dropdownReset } = useResetKey(); // Для Dropdown
     const { key: inputKey, trigger: inputReset } = useResetKey(); // Для Input
