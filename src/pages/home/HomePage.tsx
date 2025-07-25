@@ -1,7 +1,7 @@
 
 import { TaskContext } from "@/app/providers/TaskProvider";
 import { Chip } from "@/entities/task/ui";
-import TaskList from "@/features/task-list/ui/TaskList";
+import { TaskList } from "@/features/task-list/ui/";
 import { useResetKey } from "@/shared/lib/hooks";
 import { IconButton } from "@/shared/ui/button";
 import { Dropdown } from "@/shared/ui/dropdown";
@@ -9,8 +9,12 @@ import { Input } from "@/shared/ui/input";
 import { Layout } from "@/shared/ui/layout";
 import { Title, Text } from "@/shared/ui/typography";
 import { useContext } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 export function HomePage() {
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const tasks = useContext(TaskContext);
 
@@ -18,7 +22,7 @@ export function HomePage() {
     const { key: inputKey, trigger: inputReset } = useResetKey(); // Для Input
 
     return (
-        <div className="p-[20px] flex flex-col gap-[10px]">
+        <div className={`p-[20px] flex flex-col gap-[10px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>
             <Title
                 tag="h1"
                 weight="semibold"
@@ -43,9 +47,9 @@ export function HomePage() {
                 <Input icon="Search" placeholder="Введите текст..." resetKey={inputKey} />
             </Layout>
             <TaskList tasks={tasks} onEdit={(id) => {
-                console.log(`Попытка редактировать задачу ${id}`);
+                navigate(`/task/${id}`)
             }} />
+            <Outlet />
         </div>
     )
 }
-// <div className="flex flex-row p-[10px] gap-[10px]">
