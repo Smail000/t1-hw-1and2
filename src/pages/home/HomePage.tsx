@@ -1,4 +1,5 @@
 
+import { Chip } from "@/entities/task/ui";
 import { useResetKey } from "@/shared/lib/hooks";
 import { IconButton } from "@/shared/ui/button";
 import { Dropdown } from "@/shared/ui/dropdown";
@@ -33,9 +34,7 @@ export function HomePage() {
                     inputReset();
                 }} />
                 <Dropdown title="Приоритет" items={[ "Low", "Medium", "High" ]} className="min-w-[200px]"resetKey={dropdownKey}/>
-                <Layout color="dark" padding="small">
-                    <Text size="base" tag="span" weight="medium" unselectible>In Progress</Text>
-                </Layout>
+                <Chip as="In Progress" />
                 <Input icon="Search" placeholder="Введите текст..." resetKey={inputKey}/>
             </Layout>
         </>
