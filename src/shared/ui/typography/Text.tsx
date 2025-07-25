@@ -4,17 +4,19 @@ import { FontWeight, FontSize, baseFontColor } from "./fonts";
 type TextProps = {
     tag: "p" | "span",
     weight: keyof typeof FontWeight
-    size: keyof typeof FontSize,
-    children: React.ReactElement | string
+    size: keyof typeof FontSize
+    children?: React.ReactElement | string
+    unselectible?: boolean
 }
 
-export default function Text({ tag: Tag, weight, size, children }: TextProps) {
+export default function Text({ tag: Tag, weight, size, children, unselectible=false }: TextProps) {
 
     return (
         <Tag className={
                 `${FontWeight[weight]} ` +
                 `${FontSize[size]} ` +
-                `${baseFontColor}`
+                `${baseFontColor} ` +
+                `${unselectible && "select-none"}`
             }
         >
             { children }
