@@ -1,6 +1,6 @@
 
 import { FontSize, FontWeight } from "@/app/styles"
-import { Icon } from "@/shared/ui/icon";
+import { IconButton } from "@/shared/ui/button";
 import { Title, Text } from "@/shared/ui/typography";
 
 export function HomePage() {
@@ -17,8 +17,10 @@ export function HomePage() {
                 size={FontSize.base}
             >Тут находиться некоторая текст-рыба для описания задачи, но проблема в том, что описание не несет никакой смысловой нагрузки в данном случае, а вообще она должна быть.</Text>
             <div className="flex flex-row p-[10px] gap-[10px]">
-                <Icon as="Check" />
-                <Icon as="Chevron" />
+                <IconButton as="X" bgcolor="base" />
+                <IconButton as="Check" bgcolor="base" />
+                <IconButton as="Chevron" bgcolor="dark" />
+                <IconButton as="Search" bgcolor="dark" />
             </div>
         </>
     )
