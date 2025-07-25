@@ -16,6 +16,8 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
     const navigate = useNavigate();
     const [ tasks, setTasks ] = useContext(TaskContext);
 
+    const [ isTitleEmpty, setIsTitleEmpty ] = useState<boolean>(false);
+
     const [ task, ] = useState<Task | undefined>(() => {
         const initialTask = tasks.find(value => value.id === id)
         if (!initialTask) return undefined;
@@ -36,7 +38,11 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
         <Layout as="div" color="light" padding="medium" gap="medium" direction="column" className="min-w-[420px]">
             <Input placeholder="Название..." className="w-full" defaultValue={task.title} onChange={(value) => {
                 task.title = value;
+                if (isTitleEmpty) setIsTitleEmpty(false);
             }}/>
+
+            { isTitleEmpty ? <Text tag="span" size="base" weight="medium">Название нельзя оставлять пустым!</Text> : <></> }
+
             <Input placeholder="Описание..." className="w-full" defaultValue={task.description} onChange={(value) => {
                 task.description = value;
             }}/>
@@ -45,24 +51,28 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
                 <Text tag="span" size="large" weight="medium">Приоритет:</Text>
                 <Dropdown title="Приоритет" items={["Low", "Medium", "High"]} defaultValue={task.tags.priority} onSwitch={(value) => {
                     task.tags.priority = value as CardPriority;
-                }}/>
+                }} disallowNoneValue/>
             </div>
             <div className="flex flex-row justify-between w-full items-center">
                 <Text tag="span" size="large" weight="medium">Категория:</Text>
                 <Dropdown title="Категория" items={["Bug", "Feature", "Documentation", "Refactor", "Test"]} defaultValue={task.tags.category} onSwitch={(value) => {
                     task.tags.category = value as CardCategory;
-                }}/>
+                }} disallowNoneValue/>
             </div>
             <div className="flex flex-row justify-between w-full items-center">
                 <Text tag="span" size="large" weight="medium">Статус:</Text>
                 <Dropdown title="Статус" items={["ToDo", "In Progress", "Done"]} defaultValue={task.tags.status} onSwitch={(value) => {
                     task.tags.status = value as CardStatus;
-                }}/>
+                }} disallowNoneValue/>
             </div>
 
             <div className="flex flex-row justify-between w-full items-center">
                 <IconButton as="X" bgcolor="dark" onClick={() => navigate(-1)}/>
                 <IconButton as="Check" bgcolor="dark"onClick={() => {
+                    if (!task.title) {
+                        setIsTitleEmpty(true);
+                        return;
+                    }
                     const initialTaskIndex = tasks.findIndex(value => value.id === id)
                     tasks[initialTaskIndex] = task;
                     setTasks([ ...tasks ])

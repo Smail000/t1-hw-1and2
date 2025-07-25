@@ -12,12 +12,14 @@ type DropdownProps = {
     className?: string,
     resetKey?: number
     defaultValue?: string
+    disallowNoneValue?: boolean
 }
 
 const noneValue = "Нет";
 
-export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue }: DropdownProps) {
+export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue, disallowNoneValue=false }: DropdownProps) {
     defaultValue = ( items.includes(defaultValue as string) ? defaultValue : noneValue ) as string
+    if (disallowNoneValue && defaultValue === noneValue) defaultValue = items[0];
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropdownState, setDropdownState] = useState<string>(defaultValue);
@@ -63,7 +65,7 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey, 
                     className="absolute top-[calc(120%)] w-fit items-center z-10"
                     ref={dropdownMenuRef as never}
                 >
-                    {[noneValue, ...items].map(value =>
+                    {( !disallowNoneValue ? [noneValue, ...items] : items ).map(value =>
                         <Layout as="button" padding="small" doHover color="dark" className="w-full flex justify-center" key={value}
                             onClick={() => {
                                 setIsOpen(false);
