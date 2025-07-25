@@ -6,15 +6,17 @@ type TitleProps = {
     weight: keyof typeof FontWeight,
     size: keyof typeof FontSize,
     children: React.ReactElement | string
+    doWrap?: boolean
 }
 
-export default function Title({ tag: Tag, weight, size, children }: TitleProps) {
+export default function Title({ tag: Tag, weight, size, children, doWrap=false }: TitleProps) {
 
     return (
         <Tag className={
                 `${FontWeight[weight]} ` +
                 `${FontSize[size]} ` +
-                `${baseFontColor}`
+                `${baseFontColor} ` +
+                `${doWrap && "wrap-anywhere"}`
             }
         >
             { children }

@@ -7,16 +7,18 @@ type TextProps = {
     size: keyof typeof FontSize
     children?: React.ReactElement | string
     unselectible?: boolean
+    doWrap?: boolean
 }
 
-export default function Text({ tag: Tag, weight, size, children, unselectible=false }: TextProps) {
+export default function Text({ tag: Tag, weight, size, children, unselectible=false, doWrap=false }: TextProps) {
 
     return (
         <Tag className={
                 `${FontWeight[weight]} ` +
                 `${FontSize[size]} ` +
                 `${baseFontColor} ` +
-                `${unselectible && "select-none"}`
+                `${unselectible && "select-none"} ` +
+                `${ doWrap && "wrap-anywhere" }`
             }
         >
             { children }
