@@ -8,7 +8,7 @@ type TaskListProps = {
 
 export default function TaskList({ tasks, onEdit }: TaskListProps) {
     return (
-        <div className="flex flex-row flex-wrap gap-[20px]">
+        <div className="flex flex-row flex-wrap gap-[20px] max-w-[1300px] justify-center">
             { tasks.map(task => 
                     <TaskItem id={task.id} title={task.title} discription={task.description}
                     chipList={[ task.tags.status, task.tags.category, task.tags.priority ]}
