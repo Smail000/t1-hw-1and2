@@ -39,16 +39,19 @@ type LayoutProps = {
     color?: keyof typeof Color
     as?: As
     doHover?: boolean
+    doWrap?: boolean
     onClick?: (React.MouseEventHandler<HTMLDivElement> & React.MouseEventHandler<HTMLButtonElement>)
 }
 
 export default function Layout({
-    children, direction="row", padding="base", gap="base", color="light", as="div", doHover=false, onClick
+    children, direction="row", padding="base", gap="base", color="light",
+    as="div", doHover=false, doWrap=false,onClick
 }: LayoutProps) {
     const Component = as;
     return (
-        <Component className={`flex rounded-[16px] w-fit h-fit select-none` +
-            `${Direction[direction]} ${Padding[padding]} ${Gap[gap]} ${Color[color]} ${doHover && Hover[color]}`}
+        <Component className={`flex rounded-[16px] w-fit h-fit select-none transition-all ` +
+            `${Direction[direction]} ${Padding[padding]} ${Gap[gap]} ` +
+            `${Color[color]} ${doHover && Hover[color]} ${doWrap && "flex-wrap"}`}
             onClick={onClick}
         >
             { children }
