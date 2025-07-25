@@ -8,11 +8,12 @@ type InputProps = {
     placeholder?: string
     onChange?: (value: string) => void
     resetKey?: number
+    className?: string
 }
 
 export const placeholderFontColor = "placeholder-[color:#4F6D9A]"
 
-export default function Input({ icon, placeholder, onChange, resetKey }: InputProps) {
+export default function Input({ icon, placeholder, onChange, resetKey, className }: InputProps) {
     const [ inputValue, setInputValue ] = useState<string>("");
 
     // Реализация сброса Dropdown
@@ -26,7 +27,7 @@ export default function Input({ icon, placeholder, onChange, resetKey }: InputPr
     });
 
     return (
-        <Layout as="div" color="dark" doHover padding="base" direction="row" gap="base">
+        <Layout as="div" color="dark" doHover padding="base" direction="row" gap="base" className={className}>
             { icon ? <Icon as={icon} /> : <></> }
             <input type="text"
                 placeholder={placeholder}
