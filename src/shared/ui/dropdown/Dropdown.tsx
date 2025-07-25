@@ -11,18 +11,20 @@ type DropdownProps = {
     onSwitch?: (item: string) => void;
     className?: string,
     resetKey?: number
+    defaultValue?: string
 }
 
 const noneValue = "Нет";
 
-export default function Dropdown({ title, items, onSwitch, className, resetKey }: DropdownProps) {
+export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue }: DropdownProps) {
+    defaultValue = ( items.includes(defaultValue as string) ? defaultValue : noneValue ) as string
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [dropdownState, setDropdownState] = useState<string>(noneValue);
+    const [dropdownState, setDropdownState] = useState<string>(defaultValue);
 
     // Реализация сброса Dropdown
     const onReset = useCallback(() => {
-        setDropdownState(noneValue)
+        setDropdownState(defaultValue)
     }, [])
 
     useReset({
@@ -58,7 +60,7 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey }
             </Layout>
             {
                 isOpen ? <Layout as="div" color="dark" padding="base" gap="base" direction="column"
-                    className="absolute top-[calc(120%)] w-full items-center z-10"
+                    className="absolute top-[calc(120%)] w-fit items-center z-10"
                     ref={dropdownMenuRef as never}
                 >
                     {[noneValue, ...items].map(value =>

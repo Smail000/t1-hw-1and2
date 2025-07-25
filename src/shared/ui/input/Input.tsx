@@ -9,16 +9,17 @@ type InputProps = {
     onChange?: (value: string) => void
     resetKey?: number
     className?: string
+    defaultValue?: string
 }
 
 export const placeholderFontColor = "placeholder-[color:#4F6D9A]"
 
-export default function Input({ icon, placeholder, onChange, resetKey, className }: InputProps) {
-    const [ inputValue, setInputValue ] = useState<string>("");
+export default function Input({ icon, placeholder, onChange, resetKey, className, defaultValue="" }: InputProps) {
+    const [ inputValue, setInputValue ] = useState<string>(defaultValue);
 
     // Реализация сброса Dropdown
     const onReset = useCallback(() => {
-        setInputValue("")
+        setInputValue(defaultValue)
     }, [])
 
     useReset({
@@ -31,7 +32,7 @@ export default function Input({ icon, placeholder, onChange, resetKey, className
             { icon ? <Icon as={icon} /> : <></> }
             <input type="text"
                 placeholder={placeholder}
-                className={`focus:outline-none focus:border-transparent ${placeholderFontColor}`}
+                className={`focus:outline-none focus:border-transparent w-full ${placeholderFontColor}`}
                 value={inputValue}
                 onChange={event => {
                     setInputValue(event.target.value);
