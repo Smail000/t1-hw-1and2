@@ -58,7 +58,7 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey }
             </Layout>
             {
                 isOpen ? <Layout as="div" color="dark" padding="base" gap="base" direction="column"
-                    className="absolute top-[calc(120%)] w-full items-center"
+                    className="absolute top-[calc(120%)] w-full items-center z-10"
                     ref={dropdownMenuRef as never}
                 >
                     {[noneValue, ...items].map(value =>
