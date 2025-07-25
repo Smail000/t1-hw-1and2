@@ -1,4 +1,4 @@
-import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/taskState"
+import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/task.types"
 import { Layout } from "@/shared/ui/layout"
 import { Text } from "@/shared/ui/typography"
 

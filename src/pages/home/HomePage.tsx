@@ -1,5 +1,5 @@
 
-import type { Task } from "@/entities/task/model/taskState";
+import { tasks } from "@/entities/task/model/tasks";
 import { Chip } from "@/entities/task/ui";
 import TaskList from "@/features/task-list/ui/TaskList";
 import { useResetKey } from "@/shared/lib/hooks";
@@ -8,63 +8,6 @@ import { Dropdown } from "@/shared/ui/dropdown";
 import { Input } from "@/shared/ui/input";
 import { Layout } from "@/shared/ui/layout";
 import { Title, Text } from "@/shared/ui/typography";
-
-const tasks: Task[] = [
-    {
-        id: 1,
-        title: "Реализовать JWT-авторизацию",
-        description: "Добавить вход/регистрацию с токенами",
-        tags: {
-            category: "Feature",
-            status: "In Progress",
-            priority: "High"
-        },
-        createdDate: 1719820800000
-    },
-    {
-        id: 2,
-        title: "Создать макет главной страницы",
-        tags: {
-            category: "Feature",
-            status: "ToDo",
-            priority: "Medium"
-        },
-        createdDate: 1719907200000
-    },
-    {
-        id: 6,
-        title: "Исправить потерю данных при редактировании",
-        description: "Баг #42: пропадает описание при сохранении",
-        tags: {
-            category: "Bug",
-            status: "ToDo",
-            priority: "High"
-        },
-        createdDate: 1720252800000 // 2024-07-06
-    },
-    {
-        id: 4,
-        title: "Написать тесты для эндпоинтов задач",
-        description: "Покрыть 100% кейсов для /api/tasks",
-        tags: {
-            category: "Test",
-            status: "Done",
-            priority: "Medium"
-        },
-        createdDate: 1719993600000 // 2024-07-03
-    },
-    {
-        id: 5,
-        title: "Обновить README.md",
-        description: "Добавить раздел по настройке среды",
-        tags: {
-            category: "Documentation",
-            status: "ToDo",
-            priority: "Low"
-        },
-        createdDate: 1720080000000
-    }
-]
 
 export function HomePage() {
 

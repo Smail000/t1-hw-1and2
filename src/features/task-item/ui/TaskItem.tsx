@@ -1,4 +1,4 @@
-import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/taskState"
+import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/task.types"
 import { Chip } from "@/entities/task/ui"
 import { IconButton } from "@/shared/ui/button"
 import { Layout } from "@/shared/ui/layout"

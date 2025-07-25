@@ -1,4 +1,4 @@
-import type { Task } from "@/entities/task/model/taskState"
+import type { Task } from "@/entities/task/model/task.types"
 import { TaskItem } from "@/features/task-item/ui"
 
 type TaskListProps = {
