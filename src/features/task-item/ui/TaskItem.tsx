@@ -15,8 +15,8 @@ type TaskItemProps = {
 export default function TaskItem({ id, title, discription, chipList, onEdit }: TaskItemProps) {
     return (
         <Layout as="div" color="light" direction="column" padding="large" gap="medium" className="max-w-[420px] w-full">
-            <Title size="large" tag="h3" weight="semibold">{ title }</Title>
-            { discription ? (<Text size="base" tag="p" weight="medium">{ discription }</Text>) : <></> }
+            <Title size="large" tag="h3" weight="semibold" doWrap>{ title }</Title>
+            { discription ? (<Text size="base" tag="p" weight="medium" doWrap>{ discription }</Text>) : <></> }
             <div className="flex flex-row flex-wrap gap-[8px]">
                 <Chip as={chipList[0]}/>
                 <Chip as={chipList[1]}/>
