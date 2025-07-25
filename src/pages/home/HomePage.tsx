@@ -17,7 +17,7 @@ export function HomePage() {
                 weight="medium"
                 size="base"
             >Тут находиться некоторая текст-рыба для описания задачи, но проблема в том, что описание не несет никакой смысловой нагрузки в данном случае, а вообще она должна быть.</Text>
-            <Layout direction="row" padding="base" gap="base" color="light">
+            <Layout direction="row" padding="base" gap="base" color="light" className="items-center">
                 <IconButton as="X" bgcolor="base" />
                 <IconButton as="Check" bgcolor="base" />
                 <IconButton as="ChevronDown" bgcolor="dark" />
@@ -27,9 +27,9 @@ export function HomePage() {
                     <Text size="medium" tag="span" weight="medium" unselectible>Приоритет</Text>
                     <Icon as="ChevronDown"/>
                 </Layout>
-            <Layout color="dark" padding="small">
-                <Text size="base" tag="span" weight="medium" unselectible>In Progress</Text>
-            </Layout>
+                <Layout color="dark" padding="small">
+                    <Text size="base" tag="span" weight="medium" unselectible>In Progress</Text>
+                </Layout>
             </Layout>
         </>
     )
