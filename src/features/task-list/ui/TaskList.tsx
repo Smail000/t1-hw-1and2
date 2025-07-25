@@ -12,7 +12,7 @@ export default function TaskList({ tasks, onEdit }: TaskListProps) {
             { tasks.map(task => 
                     <TaskItem id={task.id} title={task.title} discription={task.description}
                     chipList={[ task.tags.status, task.tags.category, task.tags.priority ]}
-                    onEdit={onEdit}/>
+                    onEdit={onEdit} key={task.id}/>
                 )
             }
         </div>
