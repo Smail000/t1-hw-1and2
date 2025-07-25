@@ -1,5 +1,5 @@
 
-import { tasks } from "@/entities/task/model/tasks";
+import { TaskContext } from "@/app/providers/TaskProvider";
 import { Chip } from "@/entities/task/ui";
 import TaskList from "@/features/task-list/ui/TaskList";
 import { useResetKey } from "@/shared/lib/hooks";
@@ -8,8 +8,11 @@ import { Dropdown } from "@/shared/ui/dropdown";
 import { Input } from "@/shared/ui/input";
 import { Layout } from "@/shared/ui/layout";
 import { Title, Text } from "@/shared/ui/typography";
+import { useContext } from "react";
 
 export function HomePage() {
+
+    const tasks = useContext(TaskContext);
 
     const { key: dropdownKey, trigger: dropdownReset } = useResetKey(); // Для Dropdown
     const { key: inputKey, trigger: inputReset } = useResetKey(); // Для Input
