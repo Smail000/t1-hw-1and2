@@ -1,4 +1,4 @@
-import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/task.types"
+import type { TaskCategory, TaskPriority, TaskStatus } from "@/entities/task/model/task.types"
 import { Chip } from "@/entities/task/ui"
 import { IconButton } from "@/shared/ui/button"
 import { Layout } from "@/shared/ui/layout"
@@ -8,7 +8,7 @@ type TaskItemProps = {
     id: number
     title: string
     discription?: string
-    chipList: [ CardStatus, CardCategory, CardPriority ]
+    chipList: [ TaskStatus, TaskCategory, TaskPriority ]
     onEdit: (id: number) => void
 }
 

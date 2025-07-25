@@ -1,9 +1,9 @@
-import type { CardCategory, CardPriority, CardStatus } from "@/entities/task/model/task.types"
+import type { TaskCategory, TaskPriority, TaskStatus } from "@/entities/task/model/task.types"
 import { Layout } from "@/shared/ui/layout"
 import { Text } from "@/shared/ui/typography"
 
 type ChipProps = {
-    as: CardCategory | CardStatus | CardPriority
+    as: TaskCategory | TaskStatus | TaskPriority
 }
 
 export default function Chip({ as }: ChipProps) {

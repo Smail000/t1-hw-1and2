@@ -1,5 +1,9 @@
 import type { Task } from "@/entities/task/model/task.types";
 
+export const TaskCategoryArray = [ "Bug", "Feature", "Documentation", "Refactor", "Test" ]
+export const TaskStatusArray = [ "ToDo", "In Progress", "Done" ]
+export const TaskPriorityArray = [ "Low", "Medium", "High" ]
+
 export const tasks: Task[] = [
     {
         id: 1,

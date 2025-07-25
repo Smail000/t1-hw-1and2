@@ -1,5 +1,6 @@
 import { TaskContext } from "@/app/providers/TaskProvider"
-import type { CardCategory, CardPriority, CardStatus, Task } from "@/entities/task/model/task.types"
+import type { TaskCategory, TaskPriority, TaskStatus, Task } from "@/entities/task/model/task.types"
+import { TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks"
 import { IconButton } from "@/shared/ui/button"
 import { Dropdown } from "@/shared/ui/dropdown"
 import { Input } from "@/shared/ui/input"
@@ -49,20 +50,20 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
             
             <div className="flex flex-row justify-between w-full items-center">
                 <Text tag="span" size="large" weight="medium">Приоритет:</Text>
-                <Dropdown title="Приоритет" items={["Low", "Medium", "High"]} defaultValue={task.tags.priority} onSwitch={(value) => {
-                    task.tags.priority = value as CardPriority;
+                <Dropdown title="Приоритет" items={TaskPriorityArray} defaultValue={task.tags.priority} onSwitch={(value) => {
+                    task.tags.priority = value as TaskPriority;
                 }} disallowNoneValue/>
             </div>
             <div className="flex flex-row justify-between w-full items-center">
                 <Text tag="span" size="large" weight="medium">Категория:</Text>
-                <Dropdown title="Категория" items={["Bug", "Feature", "Documentation", "Refactor", "Test"]} defaultValue={task.tags.category} onSwitch={(value) => {
-                    task.tags.category = value as CardCategory;
+                <Dropdown title="Категория" items={TaskCategoryArray} defaultValue={task.tags.category} onSwitch={(value) => {
+                    task.tags.category = value as TaskCategory;
                 }} disallowNoneValue/>
             </div>
             <div className="flex flex-row justify-between w-full items-center">
                 <Text tag="span" size="large" weight="medium">Статус:</Text>
-                <Dropdown title="Статус" items={["ToDo", "In Progress", "Done"]} defaultValue={task.tags.status} onSwitch={(value) => {
-                    task.tags.status = value as CardStatus;
+                <Dropdown title="Статус" items={TaskStatusArray} defaultValue={task.tags.status} onSwitch={(value) => {
+                    task.tags.status = value as TaskStatus;
                 }} disallowNoneValue/>
             </div>
 
