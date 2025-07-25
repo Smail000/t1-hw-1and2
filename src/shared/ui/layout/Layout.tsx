@@ -41,12 +41,13 @@ type LayoutProps = {
     doHover?: boolean
     doWrap?: boolean
     onClick?: (React.MouseEventHandler<HTMLDivElement> & React.MouseEventHandler<HTMLButtonElement>)
-    className?: string
+    className?: string,
+    ref?: never
 }
 
 export default function Layout({
     children, direction="row", padding="base", gap="base", color="light",
-    as="div", doHover=false, doWrap=false, onClick, className=""
+    as="div", doHover=false, doWrap=false, onClick, className="", ref
 }: LayoutProps) {
     const Component = as;
     return (
@@ -54,6 +55,7 @@ export default function Layout({
             `${Direction[direction]} ${Padding[padding]} ${Gap[gap]} ` +
             `${Color[color]} ${doHover && Hover[color]} ${doWrap && "flex-wrap"} ${className}`}
             onClick={onClick}
+            ref={ref as never}
         >
             { children }
         </Component>
