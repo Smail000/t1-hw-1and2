@@ -32,7 +32,7 @@ const Hover = {
 }
 
 type LayoutProps = {
-    children: React.ReactElement | React.ReactElement[] | string
+    children?: React.ReactElement | React.ReactElement[] | string
     direction?: keyof typeof Direction
     padding?: keyof typeof Padding
     gap?: keyof typeof Gap

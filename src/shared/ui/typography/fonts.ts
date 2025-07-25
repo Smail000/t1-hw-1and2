@@ -1,5 +1,4 @@
 export const baseFontColor = "text-[color:#052659]"
-export const placeholderFontColor = "text-[color:#4F6D9A]"
 
 export const FontWeight = {
     medium: "font-[500]",
