@@ -1,4 +1,4 @@
-import { useDropdownReset } from "@/shared/lib/hooks/useDropdownReset";
+import { useReset } from "@/shared/lib/hooks/useReset";
 import { Icon } from "@/shared/ui/icon";
 import { Layout } from "@/shared/ui/layout";
 import { Text } from "@/shared/ui/typography";
@@ -25,7 +25,7 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey }
         setDropdownState(noneValue)
     }, [])
 
-    useDropdownReset({
+    useReset({
         resetKey,
         onReset: onReset
     });
