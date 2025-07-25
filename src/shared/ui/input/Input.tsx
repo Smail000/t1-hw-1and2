@@ -1,4 +1,4 @@
-import { useReset } from "@/shared/lib/hooks/useReset"
+import { useReset } from "@/shared/lib/hooks"
 import { Icon } from "@/shared/ui/icon"
 import { Layout } from "@/shared/ui/layout"
 import { useCallback, useState } from "react"

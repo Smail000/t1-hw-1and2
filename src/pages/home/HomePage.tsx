@@ -1,5 +1,5 @@
 
-import { useResetKey } from "@/shared/lib/hooks/useReset";
+import { useResetKey } from "@/shared/lib/hooks";
 import { IconButton } from "@/shared/ui/button";
 import { Dropdown } from "@/shared/ui/dropdown";
 import { Input } from "@/shared/ui/input";
