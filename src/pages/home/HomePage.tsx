@@ -1,5 +1,6 @@
 
 import { TaskContext } from "@/app/providers/TaskProvider";
+import { TaskFilter } from "@/features/task-filter/ui";
 import { TaskList } from "@/features/task-list/ui/";
 import { Title } from "@/shared/ui/typography";
 import { useContext } from "react";
@@ -12,9 +13,6 @@ export function HomePage() {
 
     const [ tasks, ] = useContext(TaskContext);
 
-    // const { key: dropdownKey, trigger: dropdownReset } = useResetKey(); // Для Dropdown
-    // const { key: inputKey, trigger: inputReset } = useResetKey(); // Для Input
-
     return (
         <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>
             <Title
@@ -22,6 +20,7 @@ export function HomePage() {
                 weight="semibold"
                 size="exlarge"
             >Менеджер задач</Title>
+            <TaskFilter />
             <TaskList tasks={tasks} onEdit={(id) => {
                 navigate(`/task/${id}`)
             }} />
