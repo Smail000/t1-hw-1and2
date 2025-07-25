@@ -4,7 +4,7 @@ import Edit from '@/shared/assets/icons/Edit.svg';
 import Search from '@/shared/assets/icons/Search.svg';
 import X from '@/shared/assets/icons/X.svg';
 
-const icons = { Check, Chevron, Edit, Search, X };
+const icons = { Check, ChevronDown: Chevron, ChevronUp: Chevron, Edit, Search, X };
 
 type TitleProps = {
     as: keyof typeof icons
@@ -13,6 +13,9 @@ type TitleProps = {
 export default function Icon({ as }: TitleProps) {
 
     return (
-        <img src={icons[as]} className='size-[24px] select-none' />
+        <img src={icons[as]} className={`size-[24px] select-none` +
+            `pointer-events-none ${ as === "ChevronUp" && "scale-y-[-1]" }`}
+            alt={`${as} icon`}
+        />
     )
 }

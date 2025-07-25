@@ -19,8 +19,9 @@ export function HomePage() {
             <div className="flex flex-row p-[10px] gap-[10px]">
                 <IconButton as="X" bgcolor="base" />
                 <IconButton as="Check" bgcolor="base" />
-                <IconButton as="Chevron" bgcolor="dark" />
-                <IconButton as="Search" bgcolor="dark" />
+                <IconButton as="ChevronDown" bgcolor="dark" />
+                <IconButton as="ChevronUp" bgcolor="dark" />
+                <IconButton as="Search" bgcolor="dark" onClick={() => {console.log(1)}} />
             </div>
         </>
     )
