@@ -1,3 +1,4 @@
+import { Page404 } from "@/pages/404";
 import { HomePage } from "@/pages/home";
 import { TaskEdit } from "@/pages/task-edit";
 import { createBrowserRouter } from "react-router";
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
             {
                 path: "task/:id",
                 Component: TaskEdit
+            },
+            {
+                path: "*",
+                Component: Page404
             }
         ]
     },

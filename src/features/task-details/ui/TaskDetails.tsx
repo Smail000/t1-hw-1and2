@@ -1,6 +1,7 @@
 import { TaskContext } from "@/app/providers/TaskProvider"
 import type { TaskCategory, TaskPriority, TaskStatus, Task } from "@/entities/task/model/task.types"
 import { TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks"
+import { Component404 } from "@/features/404/ui"
 import { IconButton } from "@/shared/ui/button"
 import { Dropdown } from "@/shared/ui/dropdown"
 import { Input } from "@/shared/ui/input"
@@ -29,10 +30,7 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
     });
 
     if (!task) return (
-        <Layout as="div" color="light" padding="medium" gap="medium" direction="column" className="items-center">
-            <Text tag="span" size="large" weight="medium">Похоже, вы попали на несуществующую страницу :\</Text>
-            <IconButton as="X" bgcolor="dark" onClick={() => navigate("/")}/>
-        </Layout>
+        <Component404 text="Кажется, такой карточки не существует :\"/>
     )
 
     return (
