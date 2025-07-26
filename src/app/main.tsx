@@ -12,7 +12,7 @@ import type { Filter } from '@/entities/filter/model'
 export function EntryPoint() {
 
     const [ tasks, setTasks ] = useState(defaultTasks);
-    const [ filter, setFilter ] = useState<Filter | null>(null);
+    const [ filter, setFilter ] = useState<Filter>({});
 
     return (
         <StrictMode>
