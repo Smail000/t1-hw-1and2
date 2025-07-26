@@ -17,8 +17,10 @@ type DropdownProps = {
 
 export const noneValue = "Нет";
 
-export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue, disallowNoneValue=false }: DropdownProps) {
-    defaultValue = ( items.includes(defaultValue as string) ? defaultValue : noneValue ) as string
+export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue, disallowNoneValue = false }: DropdownProps) {
+
+    // Обрабатываем значение по умолчанию согласно правилам (если ли это самое значение по умолчаию и разрешено ли оно)
+    defaultValue = (items.includes(defaultValue as string) ? defaultValue : noneValue) as string
     if (disallowNoneValue && defaultValue === noneValue) defaultValue = items[0];
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -29,6 +31,13 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey, 
         setDropdownState(defaultValue)
     }, [])
 
+    /*
+        Тут defaultValue не указан в зависимостях, потому что 
+        в фичах defaultValue и активное значение совпадают,
+        что вызвало бы постоянное стирание поля
+    */
+
+    // Hook для сброса состояния по вызову
     useReset({
         resetKey,
         onReset: onReset
@@ -39,15 +48,19 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey, 
     const dropdownMenuRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-          if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
-          dropdownMenuRef.current && !dropdownMenuRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
-          }
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
+                dropdownMenuRef.current && !dropdownMenuRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
         };
-    
+
+        /*
+            Если произошел клик вне указанных компонентов, то дропдаун закрывается
+        */
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-      }, []);
+    }, []);
 
     return (
         <div className="relative">
@@ -65,7 +78,7 @@ export default function Dropdown({ title, items, onSwitch, className, resetKey, 
                     className="absolute top-[calc(120%)] w-fit items-center z-10"
                     ref={dropdownMenuRef as never}
                 >
-                    {( !disallowNoneValue ? [noneValue, ...items] : items ).map(value =>
+                    {(!disallowNoneValue ? [noneValue, ...items] : items).map(value =>
                         <Layout as="button" padding="small" doHover color="dark" className="w-full flex justify-center" key={value}
                             onClick={() => {
                                 setIsOpen(false);

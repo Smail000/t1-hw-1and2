@@ -1,18 +1,18 @@
 
-/* Adding tailwind */
+/* Добавляем tailwind */
 @import "tailwindcss";
 
-/* Setting up base styles */
+/* Базовые стили */
 *,
 *::before,
 *::after {
-    /* Fonts */
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     -webkit-user-drag: none;
 }
 
+/* Понятия не имею, нужно ли оно тут, но лучше оставлю */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

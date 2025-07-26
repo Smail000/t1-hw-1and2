@@ -17,11 +17,18 @@ export const placeholderFontColor = "placeholder-[color:#4F6D9A]"
 export default function Input({ icon, placeholder, onChange, resetKey, className, defaultValue="" }: InputProps) {
     const [ inputValue, setInputValue ] = useState<string>(defaultValue);
 
-    // Реализация сброса Dropdown
+    // Реализация сброса Input
     const onReset = useCallback(() => {
         setInputValue(defaultValue)
     }, [])
+    
+    /*
+        Тут defaultValue не указан в зависимостях, потому что 
+        в фичах defaultValue и активное значение совпадают,
+        что вызвало бы постоянное стирание поля
+    */
 
+    // Hook для сброса состояния по вызову
     useReset({
         resetKey,
         onReset: onReset

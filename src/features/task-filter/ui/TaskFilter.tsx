@@ -11,8 +11,8 @@ import { useContext } from "react";
 
 export default function TaskFilter() {
 
-    const { key: resetKey, trigger: reset } = useResetKey();
-    const [ filter, setFilter ] = useContext(FilterContext);
+    const { key: resetKey, trigger: reset } = useResetKey(); // Для сброса всех полей
+    const [ filter, setFilter ] = useContext(FilterContext); // Сохраненные фильтры
 
     return (
         <div className="flex flex-row flex-wrap gap-[16px]">

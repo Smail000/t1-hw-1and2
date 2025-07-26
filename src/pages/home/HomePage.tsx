@@ -10,11 +10,11 @@ import { Outlet, useLocation, useNavigate } from "react-router";
 
 export function HomePage() {
 
-    const location = useLocation();
+    const location = useLocation(); // Нужен для того, чтобы убрать возможность скролить страницу при pathname !== "/"
     const navigate = useNavigate();
 
-    const [ tasks, ] = useContext(TaskContext);
-    const [ filter, ] = useContext(FilterContext);
+    const [ tasks, ] = useContext(TaskContext); // Непосредственно задачи
+    const [ filter, ] = useContext(FilterContext); // Сохраненные фильтры
 
     return (
         <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>

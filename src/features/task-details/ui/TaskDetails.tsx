@@ -18,17 +18,20 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
     const navigate = useNavigate();
     const [ tasks, setTasks ] = useContext(TaskContext);
 
+    // Состояние-флаг, чтобы обозначать отсутствие поля title
     const [ isTitleEmpty, setIsTitleEmpty ] = useState<boolean>(false);
 
+    // Тут помимо поиска такси происходит создание ее полной копии для редактирования
     const [ task, ] = useState<Task | undefined>(() => {
-        const initialTask = tasks.find(value => value.id === id)
+        const initialTask = tasks.find(value => value.id === id);
         if (!initialTask) return undefined;
         
         const newTask = {...initialTask};
-        newTask.tags = {...initialTask.tags}
-        return newTask
+        newTask.tags = {...initialTask.tags};
+        return newTask;
     });
 
+    // Если таска не нашлась, считается, что ее нет и 404
     if (!task) return (
         <Component404 text="Кажется, такой карточки не существует :\"/>
     )
@@ -68,14 +71,16 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
             <div className="flex flex-row justify-between w-full items-center">
                 <IconButton as="X" bgcolor="dark" onClick={() => navigate(-1)}/>
                 <IconButton as="Check" bgcolor="dark"onClick={() => {
-                    if (!task.title) {
+                    if (!task.title) { // Проверка на пустоту поля title
                         setIsTitleEmpty(true);
                         return;
                     }
-                    const initialTaskIndex = tasks.findIndex(value => value.id === id)
+
+                    // Здесь глобальная таска заменяется на локальную с изменениями
+                    const initialTaskIndex = tasks.findIndex(value => value.id === id);
                     tasks[initialTaskIndex] = task;
-                    setTasks([ ...tasks ])
-                    navigate(-1);
+                    setTasks([ ...tasks ]);
+                    navigate("/"); // Возвращаемся обратно
                 }}/>
             </div>
         </Layout>

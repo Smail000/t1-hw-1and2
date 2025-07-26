@@ -14,3 +14,5 @@ export type Task = {
 	},
 	createdDate: number // timestamp
 }
+
+// Планируется в дальнейшем использовать поле createdDate для сортировки

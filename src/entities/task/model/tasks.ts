@@ -4,6 +4,7 @@ export const TaskCategoryArray = [ "Bug", "Feature", "Documentation", "Refactor"
 export const TaskStatusArray = [ "ToDo", "In Progress", "Done" ]
 export const TaskPriorityArray = [ "Low", "Medium", "High" ]
 
+// По хорошему эти такси нужно загрузить в бд
 export const tasks: Task[] = [
     {
         id: 1,
