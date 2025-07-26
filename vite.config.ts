@@ -5,6 +5,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: "/t1-hw-1and2/",
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src')
