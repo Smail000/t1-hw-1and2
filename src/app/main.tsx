@@ -6,15 +6,20 @@ import { TaskContext } from '@/app/providers/TaskProvider'
 import { tasks as defaultTasks } from '@/entities/task/model/tasks'
 import { router } from '@/app/router/routes'
 import { RouterProvider } from 'react-router'
+import { FilterContext } from '@/app/providers/FilterProvider'
+import type { Filter } from '@/entities/filter/model'
 
 export function EntryPoint() {
 
     const [ tasks, setTasks ] = useState(defaultTasks);
+    const [ filter, setFilter ] = useState<Filter | null>(null);
 
     return (
         <StrictMode>
             <TaskContext value={[tasks, setTasks]}>
-            <RouterProvider router={router} />
+                <FilterContext value={[filter, setFilter]}>
+                    <RouterProvider router={router} />
+                </FilterContext>
             </TaskContext>
         </StrictMode>
     )
