@@ -15,7 +15,7 @@ type DropdownProps = {
     disallowNoneValue?: boolean
 }
 
-const noneValue = "Нет";
+export const noneValue = "Нет";
 
 export default function Dropdown({ title, items, onSwitch, className, resetKey, defaultValue, disallowNoneValue=false }: DropdownProps) {
     defaultValue = ( items.includes(defaultValue as string) ? defaultValue : noneValue ) as string

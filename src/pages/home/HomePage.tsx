@@ -1,5 +1,7 @@
 
+import { FilterContext } from "@/app/providers/FilterProvider";
 import { TaskContext } from "@/app/providers/TaskProvider";
+import { filterTasks } from "@/features/task-filter/model";
 import { TaskFilter } from "@/features/task-filter/ui";
 import { TaskList } from "@/features/task-list/ui/";
 import { Title } from "@/shared/ui/typography";
@@ -12,6 +14,7 @@ export function HomePage() {
     const navigate = useNavigate();
 
     const [ tasks, ] = useContext(TaskContext);
+    const [ filter, ] = useContext(FilterContext);
 
     return (
         <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>
@@ -21,7 +24,7 @@ export function HomePage() {
                 size="exlarge"
             >Менеджер задач</Title>
             <TaskFilter />
-            <TaskList tasks={tasks} onEdit={(id) => {
+            <TaskList tasks={filterTasks(tasks, filter)} onEdit={(id) => {
                 navigate(`/task/${id}`)
             }} />
             <Outlet />
