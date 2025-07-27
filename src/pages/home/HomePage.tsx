@@ -1,6 +1,6 @@
 
-import { FilterContext } from "@/app/providers/FilterProvider";
 import { TaskContext } from "@/app/providers/TaskProvider";
+import { useAppSelector } from "@/app/store";
 import { filterTasks } from "@/features/task-filter/model";
 import { TaskFilter } from "@/features/task-filter/ui";
 import { TaskList } from "@/features/task-list/ui/";
@@ -14,7 +14,7 @@ export function HomePage() {
     const navigate = useNavigate();
 
     const [ tasks, ] = useContext(TaskContext); // Непосредственно задачи
-    const [ filter, ] = useContext(FilterContext); // Сохраненные фильтры
+    const filter = useAppSelector(state => state.filter.value); // Сохраненные фильтры
 
     return (
         <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>
