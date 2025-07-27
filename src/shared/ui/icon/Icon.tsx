@@ -3,8 +3,9 @@ import Chevron from '@/shared/assets/icons/Chevron.svg';
 import Edit from '@/shared/assets/icons/Edit.svg';
 import Search from '@/shared/assets/icons/Search.svg';
 import X from '@/shared/assets/icons/X.svg';
+import Trash from "@/shared/assets/icons/Trash.svg"
 
-const icons = { Check, ChevronDown: Chevron, ChevronUp: Chevron, Edit, Search, X };
+const icons = { Check, ChevronDown: Chevron, ChevronUp: Chevron, Edit, Search, X, Trash };
 
 type TitleProps = {
     as: keyof typeof icons

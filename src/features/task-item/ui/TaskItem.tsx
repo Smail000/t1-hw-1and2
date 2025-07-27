@@ -10,9 +10,10 @@ type TaskItemProps = {
     discription?: string
     chipList: [ TaskStatus, TaskCategory, TaskPriority ]
     onEdit: (id: number) => void
+    onDelete: (id: number) => void
 }
 
-export default function TaskItem({ id, title, discription, chipList, onEdit }: TaskItemProps) {
+export default function TaskItem({ id, title, discription, chipList, onEdit, onDelete }: TaskItemProps) {
     return (
         <Layout as="div" color="light" direction="column" padding="large" gap="medium" className="max-w-[420px] w-full">
             <Title size="large" tag="h3" weight="semibold" doWrap>{ title }</Title>
@@ -22,7 +23,10 @@ export default function TaskItem({ id, title, discription, chipList, onEdit }: T
                 <Chip as={chipList[1]}/>
                 <Chip as={chipList[2]}/>
             </div>
-            <IconButton as="Edit" bgcolor="dark" onClick={() => onEdit(id)}/>
+            <div className="flex flex-row flex-wrap gap-[8px]">
+                <IconButton as="Edit" bgcolor="dark" onClick={() => onEdit(id)}/>
+                <IconButton as="Trash" bgcolor="dark" onClick={() => onDelete(id)}/>
+            </div>
         </Layout>
     )
 }

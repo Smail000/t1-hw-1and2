@@ -19,8 +19,12 @@ export const counterSlice = createSlice({
             const initialTaskIndex = state.value.findIndex(value => value.id === action.payload.id);
             state.value[initialTaskIndex] = action.payload.task;
         },
+
+        deleteTask: (state, action: PayloadAction<number>) => {
+            state.value = state.value.filter(task => task.id !== action.payload)
+        }
     },
 });
 
-export const { updateTask } = counterSlice.actions;
+export const { updateTask, deleteTask } = counterSlice.actions;
 export default counterSlice.reducer;

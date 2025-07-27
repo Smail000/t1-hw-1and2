@@ -1,10 +1,12 @@
 
-import { useAppSelector } from "@/app/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
+import { deleteTask } from "@/entities/task/model/slice";
+import { TaskDeleteConfirm } from "@/features/task-delete-confirm/ui";
 import { filterTasks } from "@/features/task-filter/model";
 import { TaskFilter } from "@/features/task-filter/ui";
 import { TaskList } from "@/features/task-list/ui/";
 import { Title } from "@/shared/ui/typography";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 
 export function HomePage() {
@@ -14,6 +16,12 @@ export function HomePage() {
 
     const tasks = useAppSelector(state => state.tasks.value); // Непосредственно задачи
     const filter = useAppSelector(state => state.filter.value); // Сохраненные фильтры
+
+    // Для удаления задачи
+    const dispatchTask = useAppDispatch();
+
+    // Состояние для окна удаления задачи
+    const [ showDelete, setShowDelete ] = useState<null | number>(null);
 
     // Отфильтруем задачи и сохраним до обновления
     const filteredTasks = useMemo(() => filterTasks(tasks, filter), [ tasks, filter ])
@@ -28,8 +36,23 @@ export function HomePage() {
             <TaskFilter />
             <TaskList tasks={filteredTasks} onEdit={(id) => {
                 navigate(`/task/${id}`)
-            }} />
+            }} onDelete={(id) => {
+                setShowDelete(id);
+            }}/>
             <Outlet />
+
+            {
+                showDelete !== null && <TaskDeleteConfirm
+                    onConfirm={() => {
+                        setShowDelete(null);
+                        dispatchTask(deleteTask(showDelete))
+                    }}
+
+                    onRefute={() => {
+                        setShowDelete(null);
+                    }}
+                />
+            }
         </div>
     )
 }
