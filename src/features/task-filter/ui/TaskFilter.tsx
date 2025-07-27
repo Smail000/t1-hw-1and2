@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { update } from "@/entities/filter/model/slice";
+import { updateFilter } from "@/entities/filter/model/slice";
 import type { TaskCategory, TaskPriority, TaskStatus } from "@/entities/task/model/task.types";
 import { TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks";
 import { useResetKey } from "@/shared/lib/hooks";
@@ -20,24 +20,24 @@ export default function TaskFilter() {
             <Input icon="Search" placeholder="Поиск..." resetKey={resetKey} onChange={value => {
                 const newFilter = structuredClone(filter);
                 newFilter.content = value === noneValue ? undefined : value;
-                dispatchFilter(update(newFilter));
+                dispatchFilter(updateFilter(newFilter));
             }}/>
             <Dropdown title="Приоритет" items={TaskPriorityArray} resetKey={resetKey} onSwitch={value => {
                 const newFilter = structuredClone(filter);
                 newFilter.priority = value === noneValue ? undefined : value as TaskPriority;
-                dispatchFilter(update(newFilter));
+                dispatchFilter(updateFilter(newFilter));
             }}/>
             <Dropdown title="Категория" items={TaskCategoryArray} resetKey={resetKey} onSwitch={value => {
                 const newFilter = structuredClone(filter);
                 newFilter.category = value === noneValue ? undefined : value as TaskCategory;
-                dispatchFilter(update(newFilter));
+                dispatchFilter(updateFilter(newFilter));
             }}/>
             <Dropdown title="Статус" items={TaskStatusArray} resetKey={resetKey} onSwitch={value => {
                 filter.status = value === noneValue ? undefined : value as TaskStatus;
-                dispatchFilter(update({ ...filter }));
+                dispatchFilter(updateFilter({ ...filter }));
             }}/>
             <IconButton bgcolor="dark" as="X" onClick={() => {
-                dispatchFilter(update({}));
+                dispatchFilter(updateFilter({}));
                 reset();
             }}/>
         </div>

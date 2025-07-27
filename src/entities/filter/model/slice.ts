@@ -13,11 +13,11 @@ export const counterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        update: (state, action: PayloadAction<Filter>) => {
+        updateFilter: (state, action: PayloadAction<Filter>) => {
             state.value = action.payload;
         },
     },
 });
 
-export const { update } = counterSlice.actions;
+export const { updateFilter } = counterSlice.actions;
 export default counterSlice.reducer;
