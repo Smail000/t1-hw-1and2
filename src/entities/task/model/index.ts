@@ -1,0 +1,1 @@
+export { counterSlice, updateTask, default as tasksReducer } from "./slice"

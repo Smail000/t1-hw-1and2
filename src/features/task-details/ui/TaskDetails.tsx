@@ -1,4 +1,5 @@
-import { TaskContext } from "@/app/providers/TaskProvider"
+import { useAppDispatch, useAppSelector } from "@/app/store"
+import { updateTask } from "@/entities/task/model"
 import type { TaskCategory, TaskPriority, TaskStatus, Task } from "@/entities/task/model/task.types"
 import { TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks"
 import { Component404 } from "@/features/404/ui"
@@ -7,7 +8,7 @@ import { Dropdown } from "@/shared/ui/dropdown"
 import { Input } from "@/shared/ui/input"
 import { Layout } from "@/shared/ui/layout"
 import { Text } from "@/shared/ui/typography"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router"
 
 type TaskDetailsProps = {
@@ -16,7 +17,9 @@ type TaskDetailsProps = {
 
 export default function TaskDetails({ id }: TaskDetailsProps) {
     const navigate = useNavigate();
-    const [ tasks, setTasks ] = useContext(TaskContext);
+
+    const tasks = useAppSelector(state => state.tasks.value);
+    const dispatchTasks = useAppDispatch();
 
     // Состояние-флаг, чтобы обозначать отсутствие поля title
     const [ isTitleEmpty, setIsTitleEmpty ] = useState<boolean>(false);
@@ -25,10 +28,7 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
     const [ task, ] = useState<Task | undefined>(() => {
         const initialTask = tasks.find(value => value.id === id);
         if (!initialTask) return undefined;
-        
-        const newTask = {...initialTask};
-        newTask.tags = {...initialTask.tags};
-        return newTask;
+        return structuredClone(initialTask);
     });
 
     // Если таска не нашлась, считается, что ее нет и 404
@@ -77,9 +77,7 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
                     }
 
                     // Здесь глобальная таска заменяется на локальную с изменениями
-                    const initialTaskIndex = tasks.findIndex(value => value.id === id);
-                    tasks[initialTaskIndex] = task;
-                    setTasks([ ...tasks ]);
+                    dispatchTasks(updateTask({id, task}));
                     navigate("/"); // Возвращаемся обратно
                 }}/>
             </div>
