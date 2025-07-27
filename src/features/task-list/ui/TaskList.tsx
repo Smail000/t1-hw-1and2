@@ -1,5 +1,6 @@
 import type { Task } from "@/entities/task/model/task.types"
 import { TaskItem } from "@/features/task-item/ui"
+import { Title } from "@/shared/ui/typography"
 
 type TaskListProps = {
     tasks: Task[]
@@ -15,6 +16,9 @@ export default function TaskList({ tasks, onEdit, onDelete }: TaskListProps) {
                     chipList={[ task.tags.status, task.tags.category, task.tags.priority ]}
                     onEdit={onEdit} key={task.id} onDelete={onDelete}/>
                 )
+            }
+            {
+                !tasks.length && <Title size="medium" tag="h3" weight="medium">Кажется задачи кончились... Ты молодец!</Title>
             }
         </div>
     )

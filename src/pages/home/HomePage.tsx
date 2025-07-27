@@ -27,7 +27,7 @@ export function HomePage() {
     const filteredTasks = useMemo(() => filterTasks(tasks, filter), [ tasks, filter ])
 
     return (
-        <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" && "h-screen overflow-hidden"}`}>
+        <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" || showDelete !== null && "h-screen overflow-hidden"}`}>
             <Title
                 tag="h1"
                 weight="semibold"
