@@ -5,6 +5,7 @@ import { TaskDeleteConfirm } from "@/features/task-delete-confirm/ui";
 import { filterTasks } from "@/features/task-filter/model";
 import { TaskFilter } from "@/features/task-filter/ui";
 import { TaskList } from "@/features/task-list/ui/";
+import { IconButton } from "@/shared/ui/button";
 import { Title } from "@/shared/ui/typography";
 import { useMemo, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
@@ -27,7 +28,7 @@ export function HomePage() {
     const filteredTasks = useMemo(() => filterTasks(tasks, filter), [ tasks, filter ])
 
     return (
-        <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${location.pathname !== "/" || showDelete !== null && "h-screen overflow-hidden"}`}>
+        <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${(location.pathname !== "/" || showDelete !== null) && "h-screen overflow-hidden"}`}>
             <Title
                 tag="h1"
                 weight="semibold"
@@ -53,6 +54,10 @@ export function HomePage() {
                     }}
                 />
             }
+
+            <div className="fixed left-[40px] bottom-[40px]">
+                <IconButton as="Plus" bgcolor="dark" onClick={() => {navigate("task/new")}}/>
+            </div>
         </div>
     )
 }

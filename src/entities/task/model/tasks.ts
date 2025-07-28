@@ -61,3 +61,15 @@ export const tasks: Task[] = [
         createdDate: 1720080000000
     }
 ]
+
+export const initialTask: Task = {
+    title: "",
+    description: "",
+    id: 0,
+    createdDate: 0,
+    tags: {
+        category: "Bug",
+        priority: "Low",
+        status: "ToDo"
+    }
+}

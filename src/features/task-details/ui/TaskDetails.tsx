@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/app/store"
 import { updateTask } from "@/entities/task/model"
+import { createTask } from "@/entities/task/model/slice"
 import type { TaskCategory, TaskPriority, TaskStatus, Task } from "@/entities/task/model/task.types"
-import { TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks"
+import { initialTask, TaskCategoryArray, TaskPriorityArray, TaskStatusArray } from "@/entities/task/model/tasks"
 import { Component404 } from "@/features/404/ui"
 import { IconButton } from "@/shared/ui/button"
 import { Dropdown } from "@/shared/ui/dropdown"
@@ -12,7 +13,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router"
 
 type TaskDetailsProps = {
-    id: number
+    id: number | null
 }
 
 export default function TaskDetails({ id }: TaskDetailsProps) {
@@ -26,9 +27,9 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
 
     // Тут помимо поиска такси происходит создание ее полной копии для редактирования
     const [ task, ] = useState<Task | undefined>(() => {
-        const initialTask = tasks.find(value => value.id === id);
-        if (!initialTask) return undefined;
-        return structuredClone(initialTask);
+        const task = tasks.find(value => value.id === id) || structuredClone(initialTask);
+        if (!task) return undefined;
+        return structuredClone(task);
     });
 
     // Если таска не нашлась, считается, что ее нет и 404
@@ -76,9 +77,13 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
                         return;
                     }
 
-                    // Здесь глобальная таска заменяется на локальную с изменениями
-                    dispatchTasks(updateTask({id, task}));
-                    navigate("/"); // Возвращаемся обратно
+                    if (id !== null) {
+                        dispatchTasks(updateTask({id, task}));
+                    } else {
+                        dispatchTasks(createTask(task));
+                    }
+
+                    navigate("/");// Возвращаемся обратно
                 }}/>
             </div>
         </Layout>
