@@ -19,7 +19,7 @@ export default function TaskFilter() {
         <div className="flex flex-row flex-wrap gap-[16px]">
             <Input icon="Search" placeholder="Поиск..." resetKey={resetKey} onChange={value => {
                 const newFilter = structuredClone(filter);
-                newFilter.content = value === noneValue ? undefined : value;
+                newFilter.content = value === noneValue || value === "" ? undefined : value;
                 dispatchFilter(updateFilter(newFilter));
             }}/>
             <Dropdown title="Приоритет" items={TaskPriorityArray} resetKey={resetKey} onSwitch={value => {
