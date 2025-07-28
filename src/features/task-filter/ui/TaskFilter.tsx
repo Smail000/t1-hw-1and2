@@ -33,8 +33,9 @@ export default function TaskFilter() {
                 dispatchFilter(updateFilter(newFilter));
             }}/>
             <Dropdown title="Статус" items={TaskStatusArray} resetKey={resetKey} onSwitch={value => {
-                filter.status = value === noneValue ? undefined : value as TaskStatus;
-                dispatchFilter(updateFilter({ ...filter }));
+                const newFilter = structuredClone(filter);
+                newFilter.status = value === noneValue ? undefined : value as TaskStatus;
+                dispatchFilter(updateFilter(newFilter));
             }}/>
             <IconButton bgcolor="dark" as="X" onClick={() => {
                 dispatchFilter(updateFilter({}));
