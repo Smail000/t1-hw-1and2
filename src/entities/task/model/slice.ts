@@ -1,14 +1,17 @@
 
 import type { Task } from '@/entities/task/model/task.types';
 import { tasks } from '@/entities/task/model/tasks';
+import { loadState } from '@/shared/lib/storage/localStorage';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface TaskState {
     value: Task[];
 }
 
+export const storageKey = "TaskManagerT1HW";
+
 const initialState: TaskState = {
-    value: tasks,
+    value: loadState(storageKey) || tasks,
 };
 
 export const counterSlice = createSlice({
