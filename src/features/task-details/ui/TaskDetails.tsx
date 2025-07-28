@@ -27,7 +27,8 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
 
     // Тут помимо поиска такси происходит создание ее полной копии для редактирования
     const [ task, ] = useState<Task | undefined>(() => {
-        const task = tasks.find(value => value.id === id) || structuredClone(initialTask);
+        let task = tasks.find(value => value.id === id);
+        if (!task && id === null) task = initialTask;
         if (!task) return undefined;
         return structuredClone(task);
     });
@@ -70,7 +71,7 @@ export default function TaskDetails({ id }: TaskDetailsProps) {
             </div>
 
             <div className="flex flex-row justify-between w-full items-center">
-                <IconButton as="X" bgcolor="dark" onClick={() => navigate(-1)}/>
+                <IconButton as="X" bgcolor="dark" onClick={() => navigate("/")}/>
                 <IconButton as="Check" bgcolor="dark"onClick={() => {
                     if (!task.title) { // Проверка на пустоту поля title
                         setIsTitleEmpty(true);

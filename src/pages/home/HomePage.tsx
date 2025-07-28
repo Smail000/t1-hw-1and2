@@ -29,6 +29,11 @@ export function HomePage() {
 
     return (
         <div className={`flex flex-col items-center gap-[40px] pt-[80px] pl-[40px] pr-[40px] pb-[40px] ${(location.pathname !== "/" || showDelete !== null) && "h-screen overflow-hidden"}`}>
+
+            <div className="fixed left-[40px] bottom-[40px]">
+                <IconButton as="Plus" bgcolor="dark" onClick={() => {navigate("task/new")}}/>
+            </div>
+
             <Title
                 tag="h1"
                 weight="semibold"
@@ -54,10 +59,6 @@ export function HomePage() {
                     }}
                 />
             }
-
-            <div className="fixed left-[40px] bottom-[40px]">
-                <IconButton as="Plus" bgcolor="dark" onClick={() => {navigate("task/new")}}/>
-            </div>
         </div>
     )
 }
