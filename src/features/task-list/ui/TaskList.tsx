@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/app/store"
 import type { Task } from "@/entities/task/model/task.types"
 import { TaskItem } from "@/features/task-item/ui"
 import { Title } from "@/shared/ui/typography"
@@ -9,6 +10,8 @@ type TaskListProps = {
 }
 
 export default function TaskList({ tasks, onEdit, onDelete }: TaskListProps) {
+    const filters = useAppSelector(state => state.filter.value);
+
     return (
         <div className="flex flex-row flex-wrap gap-[20px] max-w-[1300px] justify-center">
             { tasks.map(task => 
@@ -18,7 +21,13 @@ export default function TaskList({ tasks, onEdit, onDelete }: TaskListProps) {
                 )
             }
             {
-                !tasks.length && <Title size="medium" tag="h3" weight="medium">Кажется задачи кончились... Ты молодец!</Title>
+                !tasks.length && <Title size="medium" tag="h3" weight="medium">
+                    {
+                        JSON.stringify(filters) === JSON.stringify({}) ?
+                        "Кажется задачи кончились... Ты молодец!" :
+                        "Задач с такими фильтрами нет"
+                    }
+                </Title>
             }
         </div>
     )
